@@ -1,7 +1,7 @@
 /// <reference types="w3c-web-hid" />
 
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 const keys_0 = [
   { name: 'Menu', flag: 0x01 },
@@ -64,7 +64,7 @@ const keys_3 = [
 
 @Component({
     selector: 'app-root',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
