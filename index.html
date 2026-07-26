@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpaceMouse Web Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+  <main>
+    <canvas id="viewer" tabindex="0" autofocus aria-label="3D SpaceMouse demo"></canvas>
+    <header class="toolbar" aria-label="SpaceMouse controls">
+      <h1>SpaceMouse rotation lab</h1>
+      <div class="actions">
+        <button id="connect-raw" type="button">Connect using WebHID</button>
+        <button id="connect-sdk" type="button">Connect using SDK</button>
+      </div>
+    </header>
+    <output id="status" aria-live="polite" hidden></output>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

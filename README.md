@@ -1,27 +1,48 @@
-# Viewer
+# SpaceMouse Web Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+A public Vite + BabylonJS demonstration of rotating a 3D object with a 3Dconnexion SpaceMouse.
 
-## Development server
+## Input modes
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Raw WebHID** asks Chrome for direct access to the SpaceMouse. This is useful for inspecting its raw HID reports, but **3DxWare must not be holding the device**.
+- **3Dconnexion SDK** is the production path: 3DxWare and its Navigation Library Server own the hardware, while the web app receives events via 3DconnexionJS. This avoids a raw-device conflict and retains driver configuration.
 
-## Code scaffolding
+The demo is framework-free. `BabylonCanvas` owns the render lifecycle and exposes a small `rotate()` API. Input implementations convert data to the shared `SpaceMouseMotion` type in `src/space-mouse.ts`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 3Dconnexion SDK setup
 
-## Build
+The repository commits only the minified runtime needed by the browser. The downloaded SDK source, examples, documentation, and licence material must **not** be committed. The SDK agreement permits distribution of its processed JavaScript as part of a web application designed exclusively for 3Dconnexion products; it also requires the attribution shown in the app.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+To reproduce the vendored runtime after downloading and extracting the Platform SDK:
 
-## Running unit tests
+```sh
+# Default: expects ./3DxWare_SDK_v4-0-6_r22071
+npm run vendor:3dconnexion
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Or point to a different extracted SDK version
+TDX_SDK_PATH=/path/to/3DxWare_SDK npm run vendor:3dconnexion
+```
 
-## Running end-to-end tests
+This copies `3dconnexion.module.min.js` from `web/3DconnexionJS/build/` to `public/vendor/3dconnexion/`. The source SDK folder is excluded by `.gitignore`.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The driver bridge should be running before opening the demo. You can verify it locally at `https://127.51.68.120:8181/version`.
 
-## Further help
+## Development
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```sh
+npm install
+npm start
+```
+
+Use Chrome or another Chromium browser for WebHID. Run checks with:
+
+```sh
+npm run build
+npm test
+```
+
+## Deployment
+
+The GitHub Actions workflow in `.github/workflows/pages.yml` deploys every push to `main` to GitHub Pages. In the repository settings, set **Pages → Source** to **GitHub Actions** once. The workflow builds with the repository base path, so it works at `https://axeljaeger.github.io/viewer/`.
+
+Dependabot checks npm and GitHub Actions dependencies monthly.
