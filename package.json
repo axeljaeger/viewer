@@ -13,8 +13,8 @@
     "@babylonjs/core": "^9.18.0"
   },
   "devDependencies": {
-    "@types/w3c-web-hid": "^1.0.3",
-    "typescript": "~6.0.3",
-    "vite": "^7.3.1"
+    "@types/w3c-web-hid": "^1.0.7",
+    "typescript": "~7.0.2",
+    "vite": "^8.1.5"
   }
 }
