@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Locally downloaded 3Dconnexion SDK. Its source, samples, and documentation
+# are confidential under the SDK agreement; only the generated vendor runtime
+# in public/vendor/3dconnexion/ is committed.
+/3DxWare_SDK_*/
