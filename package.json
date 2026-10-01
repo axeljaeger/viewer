@@ -15,6 +15,6 @@
   "devDependencies": {
     "@types/w3c-web-hid": "^1.0.7",
     "typescript": "~7.0.2",
-    "vite": "^8.2.2"
+    "vite": "^8.3.1"
   }
 }
